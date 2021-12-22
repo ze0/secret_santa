@@ -25,11 +25,14 @@ def index():
             picked = hat['picked'][name]
         else:
             picked = pick_random_but_different(name, hat)
-        hat['picked'][name] = picked
-        with open('hat.json', 'w', encoding='utf-8') as hat_file:
-            print(json.dumps(hat), file=hat_file)
-    return render_template('index.html', picked=picked)
+        if name not in [_name.strip().lower() for _name in hat['authorized']]:
+            picked = 'Cthulhu'
+        else:
+            hat['picked'][name] = picked
+            with open('hat.json', 'w', encoding='utf-8') as hat_file:
+                print(json.dumps(hat), file=hat_file)
+    return render_template('index.html', picked=picked, remaining=len(hat['authorized'])-len(hat['picked']))
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=4001)

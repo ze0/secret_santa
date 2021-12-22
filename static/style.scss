@@ -1,0 +1,90 @@
+$green: #01731f;
+$red1: rgba(179, 30, 37, 1);
+$red2: rgba(152, 26, 30, 1);
+$legradiant: linear-gradient(90deg, $red1 0%, $red2 100%);
+
+.flex_centered {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.flex_centered_col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+body {
+  background-color: $green;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  overflow: hidden;
+
+
+  section {
+    background: $legradiant;
+    width: 75vw;
+    height: 75vh;
+    border-radius: 10px;
+    box-shadow: 1px 1px 95px -12px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 1px 1px 95px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 95px -12px rgba(0,0,0,0.75);
+    text-align: center;
+
+    > img {
+      max-height: 50vh;
+      max-width: 25vw;
+      position: absolute;
+      left: 15vw;
+    }
+    > img:nth-child(2) {
+      left: auto;
+      right: 15vw;
+       transform: scaleX(-1)
+    }
+
+    form {
+      label {
+        margin-bottom: 5vh;
+      }
+      input {
+        padding: 2em;
+        color: goldenrod;
+        border-radius: 5px;
+      }
+    }
+  }
+
+
+  /*
+  **  Let it snow !
+   */
+  .drop {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    opacity: 0;
+  }
+  .snow {
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+    background-color: #FFF;
+    box-shadow: 0 0 10px #FFF
+  }
+  .animate {
+    animation: falling 8.5s infinite ease-in;
+  }
+  @keyframes falling {
+    0% {top: 0; opacity: 1;}
+    100% {top: 1500px; opacity: 0}
+  }
+}
+
+
+
+

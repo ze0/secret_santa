@@ -3,13 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Secret santa</title>
+    <link rel="stylesheet" href="/static/style.css">
+
 </head>
-<body>
-    <section>
-        <form action="/" method="post">
-            <input type="text" title="C KOI TON NON ?" name="name">
-        </form>
-        <p>{{picked}}</p>
-    </section>
+<body class="flex_centered">
+<section class="flex_centered_col">
+    <img src="/static/snowman.png"/>
+    <img src="/static/snowman.png"/>
+    <form action="/" method="post" class="flex_centered_col">
+        <label for="name">Quel est ton pseudo mattermost ?</label>
+        <input type="text" title="C KOI TON NON ?" name="name">
+    </form>
+    {%  if picked %}
+        <div>
+            <p>Tu devras offrir un cadeaux à :<br/><br/><b>{{picked}}</b></p>
+            <p>Mais n'en parle a personne, ce sera notre petit secret 😘 !</p>
+            <img src="/static/santa.gif"/>
+        </div>
+    {% endif %}
+</section>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    console.log('il reste '+{{remaining}}+' nom')
+    //make snow
+    snowDrop(150, randomInt(1035, 1920));
+    snow(150, 150);
+
+    function snow(num, speed) {
+        if (num > 0) {
+            setTimeout(function () {
+                $('#drop_' + randomInt(1, 250)).addClass('animate');
+                num--;
+                snow(num, speed);
+            }, speed);
+        }
+    };
+
+    function snowDrop(num, position) {
+        if (num > 0) {
+            var drop = '<div class="drop snow" id="drop_' + num + '"></div>';
+
+            $('body').append(drop);
+            $('#drop_' + num).css('left', position);
+            num--;
+            snowDrop(num, randomInt(0, 1920));
+        }
+    };
+
+    function randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+</script>
 </body>
 </html>

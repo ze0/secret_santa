@@ -1,4 +1,5 @@
 {
-  "tokens": ["Alice", "Bob", "George", "Lincoln", "azerty"],
+  "authorized": ["Alice", "Bob", "George", "Lincoln", "azerty"],
+  "tokens": ["Alice", "Bob", "George", "Lincoln", "azerty",
   "picked": {}
 }
